@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>走啦旅行 - 专注旅行资讯与攻略</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/translation.js"></script>
+    <script src="js/pdfGenerator.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>走啦旅行</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#visa">签证资讯</a></li>
+                    <li><a href="#guide">旅行攻略</a></li>
+                    <li><a href="#promotion">优惠活动</a></li>
+                    <li><a href="#application">在线填单</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+            <!-- 用户登录区域 -->
+            <div class="user-actions">
+                <!-- 未登录时显示 -->
+                <div id="login-prompt">
+                    <button id="login-button" class="login-btn">登录 / 注册</button>
+                </div>
+                <!-- 登录后显示 -->
+                <div id="user-area" class="hidden">
+                    <img id="user-avatar" src="" alt="用户头像" class="user-avatar">
+                    <span id="username" class="username">用户名称</span>
+                    <button id="logout-button" class="logout-btn">登出</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main>
+        <!-- 首页横幅 -->
+        <section id="home" class="banner">
+            <div class="container">
+                <h2>专注旅行资讯，助您轻松出行</h2>
+                <p>提供最新签证信息、旅行攻略、优惠活动</p>
+            </div>
+        </section>
+
+        <!-- 签证资讯板块 -->
+        <section id="visa" class="visa-section">
+            <div class="container">
+                <h3>签证资讯</h3>
+                <div class="article-list">
+                    <article>
+                        <h4>【小心】美国签证被注销？赶紧自查是否触碰了这些"雷区"！</h4>
+                        <p>2025.11.26</p>
+                        <a href="#">阅读更多</a>
+                    </article>
+                    <article>
+                        <h4>【攻略】美签免面谈转面谈后，该如何预约面谈、准备材料？</h4>
+                        <p>2025.10.27</p>
+                        <a href="#">阅读更多</a>
+                    </article>
+                    <article>
+                        <h4>【攻略】为什么美国签证状态查询查不到？CEAC查显示"NoData"怎么办？</h4>
+                        <p>2025.11.04</p>
+                        <a href="#">阅读更多</a>
+                    </article>
+                    <article>
+                        <h4>【攻略】如何快速填写DS-160表？填DS-160表要注意什么？</h4>
+                        <p>2025.11.04</p>
+                        <a href="#">阅读更多</a>
+                    </article>
+                    <article>
+                        <h4>【攻略】美签免面谈续签新规及申请条件（2025年9月版）</h4>
+                        <p>2025.11.04</p>
+                        <a href="#">阅读更多</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 用户个人中心板块 -->
+        <section class="user-section">
+            <div class="container">
+                <h3>个人中心</h3>
+                <div class="user-profile-info">
+                    <!-- 未登录时显示 -->
+                    <div class="not-logged-in">
+                        <p>您尚未登录</p>
+                    </div>
+                    <div class="login-prompt">
+                        <p>请<a href="#" id="profile-login-link">登录</a>以查看您的个人信息</p>
+                    </div>
+                    
+                    <!-- 登录后显示 -->
+                    <img class="user-avatar hidden" src="" alt="用户头像">
+                    <div class="nickname hidden"></div>
+                    <div class="level hidden"></div>
+                    <div class="points hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 旅行攻略板块 -->
+        <section id="guide" class="guide-section">
+            <div class="container">
+                <h3>旅行攻略</h3>
+                <div class="article-list">
+                    <article>
+                        <h4>实用旅行技巧分享</h4>
+                        <p>旅行中的小窍门，让您的旅途更加顺畅</p>
+                        <a href="#">阅读更多</a>
+                    </article>
+                    <article>
+                        <h4>热门目的地推荐</h4>
+                        <p>精选全球热门旅行目的地，带您领略世界各地风光</p>
+                        <a href="#">阅读更多</a>
+                    </article>
+                    
+                    <!-- 需要登录的专属内容 -->
+                    <article class="user-exclusive hidden">
+                        <h4>为您推荐</h4>
+                        <p class="user-exclusive">根据您的旅行偏好，我们为您精选了以下内容</p>
+                        <a href="#" class="login-required">查看个性化推荐</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 优惠活动板块 -->
+        <section id="promotion" class="promotion-section">
+            <div class="container">
+                <h3>优惠活动</h3>
+                <div class="promotion-list">
+                    <!-- 登录提示 -->
+                    <div class="login-required-message hidden">
+                        <p>登录后可查看专属优惠</p>
+                        <button class="login-btn">立即登录</button>
+                    </div>
+                    
+                    <div class="promotion-item">
+                        <h4>深圳直飞往返兰卡威5日含税机票999元</h4>
+                        <p>预定时间：2017-09-30 至 2017-10-14</p>
+                        <p>旅行时间：2017-10-14 至 2017-10-18</p>
+                        <a href="#">立即预定</a>
+                    </div>
+                    <div class="promotion-item">
+                        <h4>日上免税店优惠券</h4>
+                        <p>最新日上免税店优惠券，微信后台回复"日上"自动获取</p>
+                        <p>有效期更新至2019年2月</p>
+                        <a href="#">查看详情</a>
+                    </div>
+                    <div class="promotion-item">
+                        <h4>日本知名免税店优惠券</h4>
+                        <p>汇总日本各大免税店最新优惠信息</p>
+                        <a href="#">领取优惠券</a>
+                    </div>
+                    <div class="promotion-item">
+                        <h4>泰国王权免税店优惠</h4>
+                        <p>王权免税店折扣信息及购物攻略</p>
+                        <a href="#">了解更多</a>
+                    </div>
+                    
+                    <!-- 用户专属优惠 -->
+                    <div class="promotion-item user-exclusive hidden">
+                        <h4>会员专享：东南亚海岛游立减300元</h4>
+                        <p>仅限会员专享，使用会员码：VIP2024</p>
+                        <p>优惠截止：2024-12-31</p>
+                        <a href="#" class="exclusive-btn">立即抢购</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 在线填单板块 -->
+        <section id="application" class="application-section">
+            <div class="container">
+                <h3>在线填单</h3>
+                <div class="form-container">
+                    <form id="applicationForm">
+                        <div class="form-group">
+                            <label for="fullName">姓名</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="请输入您的姓名">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">联系电话</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="请输入您的联系电话">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">电子邮箱</label>
+                            <input type="email" id="email" name="email" required placeholder="请输入您的电子邮箱">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="travelCountry">目的地国家</label>
+                            <input type="text" id="travelCountry" name="travelCountry" required placeholder="请输入您的旅行目的地国家">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="travelDate">计划出行日期</label>
+                            <input type="date" id="travelDate" name="travelDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="visaType">签证类型</label>
+                            <select id="visaType" name="visaType" required>
+                                <option value="">请选择签证类型</option>
+                                <option value="tourist">旅游签证</option>
+                                <option value="business">商务签证</option>
+                                <option value="student">学生签证</option>
+                                <option value="work">工作签证</option>
+                                <option value="other">其他签证</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="travelDuration">预计停留时间（天）</label>
+                            <input type="number" id="travelDuration" name="travelDuration" min="1" required placeholder="请输入预计停留天数">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="passportNumber">护照号码</label>
+                            <input type="text" id="passportNumber" name="passportNumber" required placeholder="请输入您的护照号码">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="passportExpiry">护照有效期至</label>
+                            <input type="date" id="passportExpiry" name="passportExpiry" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="specialRequirements">特殊要求或备注</label>
+                            <textarea id="specialRequirements" name="specialRequirements" rows="4" placeholder="如有特殊要求，请在此说明"></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+            <button type="submit" class="submit-btn">提交表单并生成英文PDF</button>
+            <button type="reset" class="reset-btn">重置表单</button>
+            <button type="button" id="saveForm" class="save-btn">保存表单</button>
+        </div>
+        
+        <!-- 保存的表单管理 -->
+        <div class="saved-forms-section">
+            <h3>使用已保存的信息</h3>
+            <div class="form-group">
+                <label for="savedForms">选择保存的表单：</label>
+                <select id="savedForms" class="form-control"></select>
+                <button type="button" id="loadForm" class="load-btn">加载表单</button>
+            </div>
+                    </form>
+                </div>
+                
+                <!-- PDF预览区域 -->
+                <div id="pdfPreviewArea" class="pdf-preview-area hidden">
+                    <h4>英文PDF报单预览</h4>
+                    <div id="pdfPreview" class="pdf-preview"></div>
+                    <div class="pdf-actions">
+                        <button id="downloadPDF" class="download-btn">下载PDF报单</button>
+                        <button id="newForm" class="new-form-btn">重新填单</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 特色服务板块 -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <h3>特色服务</h3>
+                <div class="service-list">
+                    <div class="service-item">
+                        <h4>签证咨询</h4>
+                        <p>专业签证顾问提供一对一咨询服务</p>
+                        <a href="#">预约咨询</a>
+                    </div>
+                    <div class="service-item">
+                        <h4>行程规划</h4>
+                        <p>根据您的需求定制个性化旅行方案</p>
+                        <a href="#">定制行程</a>
+                    </div>
+                    <div class="service-item">
+                        <h4>机票比价</h4>
+                        <p>全网机票价格对比，帮您找到最优惠的机票</p>
+                        <a href="#">开始比价</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <!-- 通知容器 -->
+    <div id="notification-container"></div>
+    
+    <!-- 登录模态框 -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>微信扫码登录</h3>
+                <span class="close-button" onclick="closeLoginModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="qrCodeContainer" class="qr-code-container">
+                    <img id="qrCodeImage" src="" alt="微信登录二维码" class="qr-code-image">
+                    <p id="loginStatusText" class="login-status-text">正在加载二维码...</p>
+                    <p class="login-instruction">请关注"走啦旅行"公众号并扫码</p>
+                    <div class="login-tips">
+                        <p>1. 打开微信，点击右上角"+"</p>
+                        <p>2. 选择"扫一扫"，扫描左侧二维码</p>
+                        <p>3. 在公众号内确认登录</p>
+                    </div>
+                </div>
+                <!-- 仅用于演示的按钮 -->
+                <button id="simulateScan" class="simulate-scan-button">模拟扫码成功（演示用）</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <h4>走啦旅行</h4>
+                <p>专注旅行资讯，助您轻松出行</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">联系方式</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">免责声明</a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 走啦旅行 版权所有</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
